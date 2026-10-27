@@ -1,0 +1,163 @@
+/* The viewport is the cabin: all controls are mounted on its front wall. */
+.cabin-view {
+  --cabin-depth: clamp(32px, 5svh, 70px);
+  --cabin-side: clamp(24px, 7vw, 180px);
+  --cabin-floor-depth: max(80px, calc(var(--cabin-depth) + 25px));
+  --metal-dark: #292e28;
+  --metal-light: #777969;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+.cabin-view .experience {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0;
+  min-height: 100svh;
+  padding: var(--cabin-depth) var(--cabin-side) var(--cabin-floor-depth);
+  overflow: hidden;
+  background: #242821;
+}
+.cabin-architecture { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.cabin-ceiling {
+  position: absolute; inset: 0 0 auto; height: var(--cabin-depth);
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--cabin-side)) 100%, var(--cabin-side) 100%);
+  background: linear-gradient(#11150f, #56584b 98%, #c7bc91);
+}
+.ceiling-lamp {
+  position: absolute; width: 48%; height: 44%; left: 26%; top: 14%;
+  background: #fff5d8; border: 5px solid #9c9b82; border-radius: 8px 8px 30px 30px;
+  box-shadow: 0 0 35px 12px #ffedbe50, inset 0 0 14px #fff;
+  transform: perspective(180px) rotateX(-24deg);
+}
+.cabin-wall { position: absolute; top: 0; bottom: 0; width: var(--cabin-side); }
+.cabin-wall-left {
+  left: 0;
+  clip-path: polygon(0 0, 100% var(--cabin-depth), 100% calc(100% - var(--cabin-floor-depth)), 0 100%);
+  background: repeating-linear-gradient(90deg, transparent 0 32%, #121710 32.5%, #b7ad8255 33%, transparent 34%), linear-gradient(90deg, #777b6b, #454b3e 52%, #777967 98%, #11170f);
+}
+.cabin-wall-right {
+  right: 0;
+  clip-path: polygon(0 var(--cabin-depth), 100% 0, 100% 100%, 0 calc(100% - var(--cabin-floor-depth)));
+  background: repeating-linear-gradient(90deg, transparent 0 32%, #151a13 32.5%, #b7ad8244 33%, transparent 34%), linear-gradient(90deg, #12170f, #747765 3%, #43483c 65%, #898b79);
+}
+.wall-mirror { position: absolute; inset: 18% 23% 36% 13%; border: 2px solid #b7ad8266; background: linear-gradient(110deg, #b5b5a644, #1a251d22 45%, #c3c1a655); }
+.handrail {
+  position: absolute; top: 66%; left: -10%; width: 120%; height: 13px;
+  border: 1px solid #3c3828; border-radius: 8px;
+  background: linear-gradient(#5d5135, #e6d5aa 30%, #a99159 46%, #4f462e 80%, #24261e);
+  box-shadow: 0 10px 8px #0007;
+  transform: rotate(-13deg);
+}
+.cabin-wall-right .handrail { transform: rotate(13deg); }
+.cabin-floor {
+  position: absolute; inset: auto 0 0; height: var(--cabin-floor-depth);
+  clip-path: polygon(var(--cabin-side) 0, calc(100% - var(--cabin-side)) 0, 100% 100%, 0 100%);
+  background: linear-gradient(100deg, transparent 28%, #b9b69a33 28.2%, transparent 28.5%), linear-gradient(80deg, transparent 71%, #b9b69a33 71.2%, transparent 71.5%), repeating-linear-gradient(0deg, transparent 0 42px, #c4bea322 43px, #151a1388 45px), linear-gradient(#23291f, #606355);
+  border-top: 5px solid #10160f;
+}
+.cabin-front {
+  position: relative;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(340px, .85fr);
+  grid-template-rows: auto 1fr;
+  column-gap: clamp(24px, 4vw, 70px);
+  padding: 20px clamp(24px, 4vw, 70px) 0;
+  border: 1px solid #a49d7755;
+  border-bottom: 8px solid #151b12;
+  background: radial-gradient(ellipse at 45% 0, #d7cca12a, transparent 65%), repeating-linear-gradient(90deg, #fff1 0, transparent 1px, transparent 4px), linear-gradient(90deg, #383e32, #5c6050 48%, #41483b);
+  box-shadow: inset 0 0 40px #080d0880, 0 0 25px #0006;
+}
+.cabin-brand { grid-column: 1 / -1; text-align: center; padding-bottom: 20px; }
+.cabin-brand .eyebrow { color: #ddd1ad; font-size: 8px; letter-spacing: 3px; }
+.cabin-brand h1 { font-size: clamp(36px, 3.7vw, 60px); margin: 4px 0; text-shadow: 0 2px 2px #0008; }
+.cabin-brand p { margin: 0; color: #ddd9c8; font-size: 11px; }
+.cabin-view .elevator-stage { padding: 0; display: flex; flex-direction: column; min-width: 0; }
+.cabin-view .elevator { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.cabin-view .elevator-crown { display: none; }
+.cabin-view .elevator-header { height: 76px; flex-shrink: 0; background: linear-gradient(90deg, #777761, #4f5545 30%, #4f5545 70%, #777761); box-shadow: inset 0 0 0 4px #333a2e, inset 0 0 0 5px #aa976a; }
+.cabin-view .door-frame { display: flex; flex: 1; padding: 9px 12px 0; }
+.cabin-view .doorway { height: auto; width: 100%; min-height: 300px; flex: 1; }
+.cabin-view .door { z-index: 2; background: repeating-linear-gradient(90deg, #ffffff05 0, #ffffff05 1px, #00000005 1px, #00000005 3px), linear-gradient(90deg, #666c5d, #919482 27%, #777d6b 55%, #4e5748 98%); }
+.cabin-view .door-seam, .cabin-view .threshold { z-index: 3; }
+.cabin-view .door-inlay { border-color: #d8c79555; box-shadow: inset 0 0 0 5px #5d655755, inset 0 0 0 6px #dbc89633; }
+.cabin-view .door-medallion { color: #e5d5aa99; font-size: 52px; height: 74px; }
+.cabin-view .capacity { color: #ddd5ba; font-size: 8px; line-height: 1.5; letter-spacing: 1.2px; margin: 12px 0; }
+.cabin-view .control-column { align-self: center; padding: 14px 0 20px; min-width: 0; }
+.cabin-view .floor-panel { padding: 30px 27px 0; border: 3px solid #948365; border-radius: 9px; background: radial-gradient(ellipse at 50% 0, #414c3d, #1c261f 65%); box-shadow: 0 0 0 4px #2a3027, 0 0 0 6px #b1a17a, 10px 15px 25px #0007, inset 0 0 24px #07120b; }
+.cabin-view .panel-heading h2 { font-size: clamp(29px, 2.7vw, 42px); }
+.cabin-view .panel-heading > p { font-size: 12px; margin-bottom: 20px; }
+.cabin-view .floor-button { min-height: 76px; padding: 13px 0; gap: 17px; }
+.cabin-view .floor-number { width: 50px; height: 50px; font-size: 28px; }
+.cabin-view .floor-name { font-size: 15px; line-height: 1.35; overflow-wrap: anywhere; }
+.cabin-view .floor-description { font-size: 11px; }
+.cabin-view .floor-emoji { font-size: 25px; }
+.cabin-view .panel-bottom { padding: 16px 0 20px; font-size: 11px; }
+.cabin-view .travel-status { margin-top: 17px; padding: 12px; background: #1d271e; border: 1px solid #9e916655; min-height: 54px; border-radius: 3px; }
+.cabin-view .travel-status p { color: #ded9c6; font-size: 12px; }
+.cabin-view .concierge-note { display: none; }
+.cabin-floor-label { position: absolute; bottom: 22px; left: 0; right: 0; text-align: center; font-size: 9px; letter-spacing: 4px; color: #d1ccb3; }
+.cabin-copyright { display: block; margin-top: 10px; padding: 0 16px; color: var(--ink); font-size: 11px; line-height: 1.5; letter-spacing: .5px; }
+@media (max-width: 1000px) {
+  .cabin-view { --cabin-side: 4vw; --cabin-depth: 40px; }
+  .cabin-front { padding: 20px 24px 0; column-gap: 26px; grid-template-columns: minmax(0, 1fr) minmax(310px, 1fr); }
+  .cabin-view .floor-panel { padding: 25px 20px 0; }
+  .cabin-view .floor-button { gap: 12px; }
+  .cabin-view .floor-name { font-size: 13px; }
+}
+@media (min-width: 701px) and (max-height: 900px) {
+  .cabin-front { padding-top: 12px; column-gap: 28px; }
+  .cabin-brand { padding-bottom: 12px; }
+  .cabin-brand h1 { font-size: 40px; }
+  .cabin-view .control-column { padding: 10px 0 14px; }
+  .cabin-view .floor-panel { padding: 20px 22px 0; }
+  .cabin-view .panel-heading h2 { font-size: 30px; }
+  .cabin-view .panel-heading > p { margin-bottom: 12px; }
+  .cabin-view .floor-button { min-height: 64px; padding: 9px 0; gap: 12px; }
+  .cabin-view .floor-number { width: 44px; height: 44px; }
+  .cabin-view .floor-name { font-size: 13px; }
+  .cabin-view .floor-description { font-size: 10px; }
+  .cabin-view .panel-bottom { padding: 12px 0; }
+  .cabin-view .travel-status { margin-top: 13px; min-height: 44px; padding: 10px; }
+}
+@media (max-width: 700px) {
+  .cabin-view { --cabin-side: clamp(10px, 3vw, 20px); --cabin-depth: 30px; }
+  .cabin-front { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; padding: 12px 10px 0; gap: 0; }
+  .cabin-brand { padding-bottom: 12px; }.cabin-brand h1 { font-size: clamp(33px, 9vw, 44px); letter-spacing: -1.5px; }
+  .cabin-brand .eyebrow { font-size: 7px; letter-spacing: 1px; }
+  .cabin-brand p { font-size: 11px; max-width: 280px; margin: auto; line-height: 1.5; }
+  .cabin-view .elevator-stage { grid-column: 1; grid-row: 2; }
+  .cabin-view .elevator, .cabin-view .doorway { min-height: 0; }
+  .cabin-view .elevator-header { height: 66px; }
+  .cabin-view .control-column { grid-column: 1; grid-row: 2; z-index: 2; align-self: start; padding: 0; margin: 83px 10px 38px; transition: opacity 180ms ease; }
+  .cabin-view .floor-panel { padding: 19px 16px 0; }
+  .cabin-view .panel-heading h2 { font-size: clamp(26px, 7vw, 34px); margin: 8px 0; }
+  .cabin-view .panel-heading .eyebrow { font-size: 8px; letter-spacing: 1.6px; }
+  .cabin-view .panel-heading > p { display: none; }
+  .cabin-view .floor-button { min-height: 62px; padding: 9px 0; gap: 12px; }
+  .cabin-view .floor-number { width: 44px; height: 44px; }
+  .cabin-view .floor-name { font-size: 14px; }
+  .cabin-view .floor-description { display: none; }
+  .cabin-view .floor-emoji { font-size: 20px; }
+  .cabin-view .panel-bottom { display: none; }
+  .cabin-view .travel-status { min-height: 44px; padding: 10px; margin-top: 12px; }
+  .cabin-view .concierge-note { display: none; }
+  .cabin-view .capacity { font-size: 6px; letter-spacing: .7px; }
+  .cabin-view .phase-opening .control-column { opacity: 0; pointer-events: none; }
+  .cabin-view .phase-redirecting .floor-panel { display: none; }
+  .cabin-view .phase-redirecting .control-column { background: #18231a; padding: 18px; border: 1px solid var(--accent); }
+  .cabin-view .phase-redirecting .elevator { min-height: 450px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cabin-view .control-column { transition: none; }
+}
+@media (max-width: 380px) {
+  .cabin-front { padding-right: 9px; padding-left: 9px; }
+  .cabin-view .control-column { margin-left: 8px; margin-right: 8px; }
+  .cabin-view .floor-panel { padding-right: 13px; padding-left: 13px; }
+  .cabin-view .floor-button { gap: 10px; }.cabin-view .floor-emoji { display: none; }
+}
